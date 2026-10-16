@@ -17,7 +17,14 @@ public class MouseBehavior : MonoBehaviour
 
     void Update()
     {
-        _rb.simulated = GameBehavior.Instance.State == Mousekeeping.GameState.Play;
+        if (GameBehavior.Instance.State == Mousekeeping.GameState.Play)
+        {
+            _rb.simulated = true;
+        }
+        else
+        {
+            _rb.simulated = false;
+        }
     }
 
     private void FixedUpdate()

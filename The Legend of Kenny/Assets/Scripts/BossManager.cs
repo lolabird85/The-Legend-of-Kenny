@@ -8,7 +8,9 @@ public class BossManager : MonoBehaviour
     public GameObject KingKen;
     public Transform KenParent;
     [SerializeField] private GameObject _gate;
-
+    
+    public static bool BossHealthDown = false;
+    
     void Update()
     {
         if (BossBehavior.BossHealth <= 0)
@@ -21,7 +23,6 @@ public class BossManager : MonoBehaviour
             Instantiate(KingKen, Vector3.zero, Quaternion.identity, KenParent);
             KenBehavior.Crowned = false;
             Destroy(_gate);
-            
         }
     }
 }

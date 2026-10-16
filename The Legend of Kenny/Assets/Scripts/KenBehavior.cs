@@ -70,6 +70,10 @@ public class KenBehavior : MonoBehaviour
                 _direction += new Vector2(0, -_speed);
             }
         }
+        if (GameBehavior.Instance.State == Mousekeeping.GameState.GameOver)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

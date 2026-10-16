@@ -1,6 +1,10 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameBehavior : MonoBehaviour
 {
@@ -20,6 +24,10 @@ public class GameBehavior : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMP_Text _pauseUI;
     [SerializeField] private TMP_Text _quitUI;
+    [SerializeField] private TMP_Text _timeDisplay;
+    [SerializeField] private Image _gameOverKen;
+    [SerializeField] private TMP_Text _gameOverText;
+    [SerializeField] private TMP_Text _restartText;
     private Mousekeeping.GameState _state;
     public Mousekeeping.GameState State
     {
@@ -30,6 +38,21 @@ public class GameBehavior : MonoBehaviour
             _state = value;
             _pauseUI.enabled = State == Mousekeeping.GameState.Pause;
             _quitUI.enabled = State == Mousekeeping.GameState.Pause;
+            _gameOverKen.enabled = State == Mousekeeping.GameState.GameOver;
+            _gameOverText.enabled = State == Mousekeeping.GameState.GameOver;
+            _restartText.enabled = State == Mousekeeping.GameState.GameOver;
+        }
+    }
+
+    private float _seconds = 80;
+
+    public float Seconds
+    {
+        get => _seconds;
+        set
+        {
+            _seconds = value;
+            _timeDisplay.text = String.Format("{0:00}", Seconds);
         }
     }
     
@@ -52,6 +75,7 @@ public class GameBehavior : MonoBehaviour
     {
         State = Mousekeeping.GameState.Play;
     }
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Escape))
@@ -62,9 +86,20 @@ public class GameBehavior : MonoBehaviour
         }
         if (State == Mousekeeping.GameState.Play)
         {
-            if (!_spawnMouse)
+            if (Seconds > 0)
             {
-                StartCoroutine(SpawnRoutine());
+                Seconds -= Time.deltaTime;
+            }
+            else
+            {
+                State = Mousekeeping.GameState.GameOver;
+            }
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                if (!_spawnMouse)
+                {
+                    StartCoroutine(SpawnRoutine());
+                }
             }
             if (MouseDeath >= 11)
             {
@@ -77,6 +112,13 @@ public class GameBehavior : MonoBehaviour
             {
                 Application.Quit();
                 Debug.Log("Quitting game...");
+            }
+        }
+        if (State == Mousekeeping.GameState.GameOver)
+        {
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                Application.Quit();
             }
         }
     }

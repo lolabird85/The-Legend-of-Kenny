@@ -28,11 +28,14 @@ public class BossBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Weapon"))
         {
+            BossManager.BossHealthDown = true;
             BossHealth--;
             Debug.Log(BossHealth);
+            BossManager.BossHealthDown = false;
             if (BossHealth <= 0)
             {
                 Destroy(gameObject);
+                BossManager.BossHealthDown = false;
             }
         }
     }
