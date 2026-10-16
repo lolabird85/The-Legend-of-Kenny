@@ -30,12 +30,15 @@ public class KenBehavior : MonoBehaviour
     
     [Header("Projectile)")]
     [SerializeField] private GameObject _projectilePrefab;
-    [SerializeField] private Transform _projectileSpawnPoint;
-    [SerializeField] private Transform _projectileParent;
+    
+    [Header("Audio Properties")]
+    [SerializeField] private AudioClip _sword;
+    private AudioSource _source;
     
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _source = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -44,6 +47,12 @@ public class KenBehavior : MonoBehaviour
         if (Input.GetKey(_attackButton))
         {
             Instantiate(_swordPrefab, _swordSpawnPoint.position, _swordParent.rotation, _swordParent);
+        }
+
+        if (Input.GetKeyDown(_attackButton))
+        {
+            _source.clip = _sword;
+            _source.Play();
         }
     }
     
@@ -79,7 +88,7 @@ public class KenBehavior : MonoBehaviour
             
             if (CanShoot && Input.GetKeyDown(_attackButton))
             {
-                Instantiate(_projectilePrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation, _projectileParent);
+                Instantiate(_projectilePrefab, _swordSpawnPoint.position, _swordParent.rotation, _swordParent);
             }
         }
         if (GameBehavior.Instance.State == Mousekeeping.GameState.GameOver)
