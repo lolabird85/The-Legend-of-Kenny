@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class P : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class P : MonoBehaviour
             Rigidbody2D _kenRB = other.GetComponent<Rigidbody2D>();
             if (_kenRB)
             {
-                // GameBehavior.Instance.PowerUp;
+                GameBehavior.Instance.PowerStart();
             }
             Destroy(gameObject);
         }

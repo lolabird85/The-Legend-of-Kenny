@@ -56,6 +56,17 @@ public class GameBehavior : MonoBehaviour
         }
     }
     
+    [Header("Pickup")]
+    [SerializeField] private GameObject _pickUpPrefab;
+    [SerializeField] private Transform _pickUpParent;
+    private GameObject _pickUp;
+    [SerializeField] private Vector2 _pickUpSpawnBounds;
+    [SerializeField, Range(0.0000001f, 0.01f)]
+    private float _pickUpSpawnProbability = 0.0001f;
+    private Vector2 _prefabSize;
+    private KenBehavior _ken;
+    [SerializeField, Range(1.0f, 10.0f)] private float _powerUpDuration = 5.0f;
+    
     void Awake()
     {
         if (Instance == null)
@@ -74,6 +85,7 @@ public class GameBehavior : MonoBehaviour
     void Start()
     {
         State = Mousekeeping.GameState.Play;
+        _pickUpSpawnBounds = new Vector2(Random.Range(-9f, 9f), Random.Range(-4f, 4f));
     }
     
     void Update()
@@ -111,7 +123,6 @@ public class GameBehavior : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Q))
             {
                 Application.Quit();
-                Debug.Log("Quitting game...");
             }
         }
         if (State == Mousekeeping.GameState.GameOver)
@@ -120,6 +131,21 @@ public class GameBehavior : MonoBehaviour
             {
                 Application.Quit();
             }
+        }
+        
+        if (!_pickUp && Random.value < _pickUpSpawnProbability)
+        {
+            Vector2 position;
+            do
+            {
+                position = new Vector2(
+                    Random.Range(-_pickUpSpawnBounds.x, _pickUpSpawnBounds.x),
+                    Random.Range(-_pickUpSpawnBounds.y, _pickUpSpawnBounds.y));
+            } while (
+                Physics2D.OverlapBox(position, _prefabSize, 0.0f) &&
+                Physics2D.OverlapBox(position, _prefabSize, 45.0f));
+                
+            _pickUp = Instantiate(_pickUpPrefab, position, Quaternion.identity, _pickUpParent);
         }
     }
     
@@ -134,5 +160,22 @@ public class GameBehavior : MonoBehaviour
         }
         yield return new WaitForSeconds(2);
         _spawnMouse = false;
+    }
+    
+    public IEnumerator PowerUp()
+    {
+        if (_ken.CanShoot)
+        {
+            yield break;
+        }
+
+        _ken.CanShoot = true;
+        yield return new WaitForSeconds(_powerUpDuration);
+        _ken.CanShoot = false;
+    }
+
+    public void PowerStart()
+    {
+        StartCoroutine(PowerUp());
     }
 }

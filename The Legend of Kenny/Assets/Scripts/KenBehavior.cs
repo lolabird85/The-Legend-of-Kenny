@@ -26,6 +26,13 @@ public class KenBehavior : MonoBehaviour
     [SerializeField] private Transform _swordSpawnPoint;
     [SerializeField] private Transform _swordParent;
     
+    [HideInInspector] public bool CanShoot;
+    
+    [Header("Projectile)")]
+    [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private Transform _projectileSpawnPoint;
+    [SerializeField] private Transform _projectileParent;
+    
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -68,6 +75,11 @@ public class KenBehavior : MonoBehaviour
             if (Input.GetKey(_downDirection))
             {
                 _direction += new Vector2(0, -_speed);
+            }
+            
+            if (CanShoot && Input.GetKeyDown(_attackButton))
+            {
+                Instantiate(_projectilePrefab, _projectileSpawnPoint.position, _projectileSpawnPoint.rotation, _projectileParent);
             }
         }
         if (GameBehavior.Instance.State == Mousekeeping.GameState.GameOver)

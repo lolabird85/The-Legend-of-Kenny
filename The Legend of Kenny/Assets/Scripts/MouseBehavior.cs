@@ -40,6 +40,14 @@ public class MouseBehavior : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Weapon"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void RunMouse()
     {
         Vector2 direction = Random.onUnitCircle;

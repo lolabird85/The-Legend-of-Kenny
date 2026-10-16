@@ -143,6 +143,10 @@ MonoBehaviour:
   _swordPrefab: {fileID: 3409565730821182760, guid: 76ea69175111d4f1ab4897529f80a0f5, type: 3}
   _swordSpawnPoint: {fileID: 3119168723310431864}
   _swordParent: {fileID: 0}
+  CanShoot: 0
+  _projectilePrefab: {fileID: 6271600240073213045, guid: f9cc7532223a24a86b92922879ef6738, type: 3}
+  _projectileSpawnPoint: {fileID: 0}
+  _projectileParent: {fileID: 0}
 --- !u!61 &3519499191306739862
 BoxCollider2D:
   m_ObjectHideFlags: 0
