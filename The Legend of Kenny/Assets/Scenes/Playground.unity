@@ -1183,6 +1183,7 @@ MonoBehaviour:
   _pickUpParent: {fileID: 1140426832}
   _pickUpSpawnBounds: {x: 0, y: 0}
   _pickUpSpawnProbability: 0.00084
+  _powerUpDuration: 1
 --- !u!82 &953667458
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1301,6 +1302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1140426832}
+  - component: {fileID: 1140426833}
   m_Layer: 0
   m_Name: PickupParent
   m_TagString: Untagged
@@ -1323,6 +1325,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1140426833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140426831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab329b2494dc41d78d9283a6f5b1d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DontDestroy
 --- !u!1 &1162069519
 GameObject:
   m_ObjectHideFlags: 0
