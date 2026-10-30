@@ -1183,7 +1183,7 @@ MonoBehaviour:
   _pickUpParent: {fileID: 1140426832}
   _pickUpSpawnBounds: {x: 0, y: 0}
   _pickUpSpawnProbability: 0.00084
-  _powerUpDuration: 1
+  _powerUpDuration: 3
 --- !u!82 &953667458
 AudioSource:
   m_ObjectHideFlags: 0

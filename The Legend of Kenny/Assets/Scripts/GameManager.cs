@@ -178,7 +178,7 @@ public class GameBehavior : MonoBehaviour
         _spawnMouse = false;
     }
     
-    public IEnumerator PowerUp()
+    private IEnumerator PowerUp()
     {
         Debug.Log("Coroutine start!");
         Debug.Log(_ken.CanBlock);
@@ -193,5 +193,10 @@ public class GameBehavior : MonoBehaviour
         Debug.Log(_ken.CanBlock);
         Debug.Log("Seconds done");
         _ken.CanBlock = false;
+    }
+
+    public void RunPowerUp()
+    {
+        StartCoroutine(PowerUp());
     }
 }

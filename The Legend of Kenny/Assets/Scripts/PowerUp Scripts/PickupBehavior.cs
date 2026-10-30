@@ -22,7 +22,7 @@ public class P : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // _source.Play();
-            StartCoroutine(GameBehavior.Instance.PowerUp());
+            GameBehavior.Instance.RunPowerUp();
             Destroy(gameObject);
         }
     }
