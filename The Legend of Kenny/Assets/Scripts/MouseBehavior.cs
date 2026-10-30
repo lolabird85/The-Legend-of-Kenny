@@ -8,11 +8,15 @@ public class MouseBehavior : MonoBehaviour
     [Header("Mouse Properties")] [SerializeField]
     private float _launchForce = 5.0f;
     private Rigidbody2D _rb;
-
+    private GameObject _mouseWeapon;
+    [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private Transform _projectileParent;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _mouseWeapon = Instantiate(_projectilePrefab, transform.position, Quaternion.identity, transform);
+        // Physics.IgnoreCollision(_mouseWeapon.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     void Update()
@@ -35,14 +39,6 @@ public class MouseBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Weapon"))
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Weapon"))
         {
             Destroy(gameObject);
         }

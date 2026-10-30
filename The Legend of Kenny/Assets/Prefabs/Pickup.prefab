@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6112883618140323522}
   - component: {fileID: 1148471472695025828}
   - component: {fileID: 3919205967290869400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pickup
-  m_TagString: Untagged
+  m_TagString: pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::P
   _rotateSpeed: 15.5
-  _pickUpSound: {fileID: 8300000, guid: bc97dcbc5e08e482290f086bb876a1af, type: 3}
 --- !u!82 &3919205967290869400
 AudioSource:
   m_ObjectHideFlags: 0
@@ -173,7 +172,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 99
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

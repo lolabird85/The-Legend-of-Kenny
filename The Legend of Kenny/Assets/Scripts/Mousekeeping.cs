@@ -7,5 +7,6 @@ public static class Mousekeeping
         Play,
         Pause,
         GameOver,
+        Win
     }
 }

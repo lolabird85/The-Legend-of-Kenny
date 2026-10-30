@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3119168723310431864}
   - component: {fileID: 1401885392518301841}
   - component: {fileID: 2551704307336412439}
-  - component: {fileID: 8836262431179829848}
   - component: {fileID: 3519499191306739862}
   - component: {fileID: 6843452235325743059}
+  - component: {fileID: 4254797436210820790}
   m_Layer: 7
   m_Name: HeroKen
   m_TagString: Player
@@ -122,31 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8836262431179829848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7426137728047665891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91fa7628cc91b4970ae7b7717e49853d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KenBehavior
-  _speed: 8
-  _leftDirection: 97
-  _rightDirection: 100
-  _upDirection: 119
-  _downDirection: 115
-  _attackButton: 32
-  _renderer: {fileID: 1401885392518301841}
-  _swordPrefab: {fileID: 3409565730821182760, guid: 76ea69175111d4f1ab4897529f80a0f5, type: 3}
-  _swordSpawnPoint: {fileID: 3119168723310431864}
-  _swordParent: {fileID: 0}
-  CanShoot: 0
-  _projectilePrefab: {fileID: 6271600240073213045, guid: f9cc7532223a24a86b92922879ef6738, type: 3}
-  _sword: {fileID: 8300000, guid: 84fbcc5d1871c4db08c2021d0670ebc5, type: 3}
 --- !u!61 &3519499191306739862
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206,7 +181,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.54
+  m_Volume: 0.909
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -290,3 +265,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4254797436210820790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426137728047665891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fa7628cc91b4970ae7b7717e49853d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KenBehavior
+  _speed: 8
+  _leftDirection: 97
+  _rightDirection: 100
+  _upDirection: 119
+  _downDirection: 115
+  _attackButton: 32
+  _renderer: {fileID: 0}
+  _swordPrefab: {fileID: 3409565730821182760, guid: 76ea69175111d4f1ab4897529f80a0f5, type: 3}
+  _swordSpawnPoint: {fileID: 0}
+  _swordParent: {fileID: 0}
+  CanBlock: 0
+  _pickUpSound: {fileID: 8300000, guid: bc97dcbc5e08e482290f086bb876a1af, type: 3}
+  _bullet: {fileID: 8300000, guid: 91e59f38e1a174fe0a307a6047e844bb, type: 3}
+  _sword: {fileID: 8300000, guid: 84fbcc5d1871c4db08c2021d0670ebc5, type: 3}
+  _squeak: {fileID: 8300000, guid: 412fc4ca7207743ae95360efd5e33442, type: 3}
+  _shieldPrefab: {fileID: 7984374208489049308, guid: 4e6e5ef5c2177416f9bd7de877831807, type: 3}
+  _shieldParent: {fileID: 0}

@@ -5,12 +5,11 @@ using System.Collections;
 public class P : MonoBehaviour
 {
     [SerializeField, Range(1.0f, 100.0f)] private float _rotateSpeed;
-    [SerializeField] private AudioClip _pickUpSound;
-    private AudioSource _source;
+    // private AudioSource _source;
 
     private void Start()
     {
-        _source = GetComponent<AudioSource>();
+        // _source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -22,12 +21,8 @@ public class P : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Rigidbody2D _kenRB = other.GetComponent<Rigidbody2D>();
-            if (_kenRB)
-            {
-                StartCoroutine(GameBehavior.Instance.PowerUp());
-            }
-            _source.PlayOneShot(_pickUpSound);
+            // _source.Play();
+            StartCoroutine(GameBehavior.Instance.PowerUp());
             Destroy(gameObject);
         }
     }

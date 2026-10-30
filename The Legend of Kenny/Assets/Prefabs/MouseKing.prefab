@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7002382151157356765}
   - component: {fileID: 1505183231385424488}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4654034497957550360}
   - component: {fileID: 8895232011221397297}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,8 @@ GameObject:
   - component: {fileID: 7301024738695730270}
   - component: {fileID: 3648393155467326464}
   - component: {fileID: 2183972186236475237}
-  m_Layer: 0
+  - component: {fileID: 7466663588253448466}
+  m_Layer: 9
   m_Name: MouseKing
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -302,6 +303,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossBehavior
   _launchForce: 1
   _steepnessThreshold: 0.25
+  _roar: {fileID: 8300000, guid: a8803609c8f9441aa8a4ff5307257142, type: 3}
+  _attackRate: 6.06
+  _projectilePrefab: {fileID: 6271600240073213045, guid: f9cc7532223a24a86b92922879ef6738, type: 3}
+  _projectileParent: {fileID: 0}
 --- !u!61 &2183972186236475237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -348,6 +353,103 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!82 &7466663588253448466
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011650730713354686}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2203961443246701502
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7236555496698838805}
   - component: {fileID: 882903524497003438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3458500104480637357}
   - component: {fileID: 4528767042168759899}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Triangle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8902052183424606428}
   - component: {fileID: 2100474539901600310}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3785512030461994103}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5378314062315242056}
   - component: {fileID: 758684175568312788}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -755,7 +857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2467176110820408627}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ears
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1934660731067257826}
   - component: {fileID: 2044090802899907882}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8123901817958339870}
   - component: {fileID: 3222892450499289471}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Brow R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -971,7 +1073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3212730918123893830}
   - component: {fileID: 1168835513761983783}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1062,7 +1164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8207526667653213785}
   - component: {fileID: 3972186918489938345}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1152,7 +1254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5994883079833058125}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1188,7 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6621063163432087796}
   - component: {fileID: 7976994161673149660}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Brow L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1279,7 +1381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3555572034026323993}
   - component: {fileID: 6419545743874303818}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1370,7 +1472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2828876298914774043}
   - component: {fileID: 8860767806143810691}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Triangle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

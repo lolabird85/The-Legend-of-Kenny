@@ -13,6 +13,7 @@ public class GameBehavior : MonoBehaviour
     [SerializeField] private GameObject _gate;
     [SerializeField] private AudioClip _boom;
     private AudioSource _source;
+    private bool _gateAlive = true;
     
     [Header("Mice")]
     [SerializeField] private GameObject _mousePrefab;
@@ -58,6 +59,19 @@ public class GameBehavior : MonoBehaviour
         }
     }
     
+    [SerializeField] private TMP_Text _kenHealthText;
+    private int _kenHealth = 3;
+    public int KenHealth
+    {
+        get => _kenHealth;
+        
+        set
+        {
+            _kenHealth = value;
+            _kenHealthText.text = KenHealth.ToString();
+        }
+    }
+    
     [Header("Pickup")]
     [SerializeField] private GameObject _pickUpPrefab;
     [SerializeField] private Transform _pickUpParent;
@@ -67,7 +81,8 @@ public class GameBehavior : MonoBehaviour
     private float _pickUpSpawnProbability = 0.0001f;
     private Vector2 _prefabSize;
     private KenBehavior _ken;
-    [SerializeField, Range(1.0f, 10.0f)] private float _powerUpDuration = 5.0f;
+
+    [SerializeField, Range(1.0f, 10.0f)] private float _powerUpDuration = 1.0f;
     
     void Awake()
     {
@@ -88,7 +103,9 @@ public class GameBehavior : MonoBehaviour
     {
         State = Mousekeeping.GameState.Play;
         _pickUpSpawnBounds = new Vector2(Random.Range(-9f, 9f), Random.Range(-4f, 4f));
-        _ken = GetComponent<KenBehavior>();
+        _ken = GameObject.FindWithTag("Player").GetComponent<KenBehavior>();
+        
+        _source = GetComponent<AudioSource>();
     }
     
     void Update()
@@ -99,7 +116,7 @@ public class GameBehavior : MonoBehaviour
                 Mousekeeping.GameState.Pause :
                 Mousekeeping.GameState.Play;
         }
-        if (State == Mousekeeping.GameState.Play)
+        if (State == Mousekeeping.GameState.Play && State != Mousekeeping.GameState.Win)
         {
             if (Seconds > 0)
             {
@@ -116,13 +133,17 @@ public class GameBehavior : MonoBehaviour
                     StartCoroutine(SpawnRoutine());
                 }
             }
-            if (MouseDeath >= 11)
+            if (MouseDeath >= 10)
             {
-                Destroy(_gate);
-                _source.PlayOneShot(_boom);
+                if(_gateAlive)
+                {
+                    Destroy(_gate);
+                    _source.PlayOneShot(_boom);
+                    _gateAlive = false;
+                }
             }
             
-            if (!_pickUp && Random.value < _pickUpSpawnProbability)
+            if (!_pickUp && Random.value < _pickUpSpawnProbability && !_ken.CanBlock)
             {
                 Vector2 position;
                 do
@@ -137,19 +158,10 @@ public class GameBehavior : MonoBehaviour
                 _pickUp = Instantiate(_pickUpPrefab, position, Quaternion.identity, _pickUpParent);
             }
         }
-        if (State == Mousekeeping.GameState.Pause)
+
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
-            if (Input.GetKeyUp(KeyCode.Q))
-            {
-                Application.Quit();
-            }
-        }
-        if (State == Mousekeeping.GameState.GameOver)
-        {
-            if (Input.GetKeyUp(KeyCode.Q))
-            {
-                Application.Quit();
-            }
+            State = Mousekeeping.GameState.Win;
         }
     }
     
@@ -162,19 +174,20 @@ public class GameBehavior : MonoBehaviour
             _mouse = Instantiate(_mousePrefab, _mousePosition, Quaternion.identity, _mouseParent);
             _mouseCount++;
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         _spawnMouse = false;
     }
     
     public IEnumerator PowerUp()
     {
-        if (_ken.CanShoot)
+        Debug.Log("Coroutine start!");
+        if (_ken.CanBlock)
         {
             yield break;
         }
-
-        _ken.CanShoot = true;
+        _ken.CanBlock = true;
         yield return new WaitForSeconds(_powerUpDuration);
-        _ken.CanShoot = false;
+        Debug.Log("Seconds done");
+        _ken.CanBlock = false;
     }
 }

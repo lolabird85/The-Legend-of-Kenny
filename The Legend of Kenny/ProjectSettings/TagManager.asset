@@ -10,6 +10,9 @@ TagManager:
   - Load
   - Boss
   - Crown
+  - projectile
+  - Shield
+  - pickup
   layers:
   - Default
   - TransparentFX
@@ -19,9 +22,9 @@ TagManager:
   - UI
   - Weapon
   - Hero
-  - 
-  - 
-  - 
+  - Projectile
+  - Mouse
+  - Shield
   - 
   - 
   - 

@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class BossBehavior : MonoBehaviour
 {
@@ -7,16 +8,30 @@ public class BossBehavior : MonoBehaviour
     [SerializeField] private float _launchForce = 5.0f;
     [SerializeField, Range(0.0f, 1.0f)] private float _steepnessThreshold = 0.25f;
     private Transform _crownPosition;
-    public static int BossHealth = 1000;
+    [SerializeField] public static int BossHealth = 100;
+    private AudioSource _source;
+    [SerializeField] private AudioClip _roar;
+    private bool _inCoroutine = false;
+    [SerializeField, Range(1.0f, 15.0f)] private float _attackRate = 10.0f;
+    private GameObject _mouseWeapon;
+    [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private Transform _projectileParent;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _source = GetComponent<AudioSource>();
+        _source.PlayOneShot(_roar);
     }
     
     void Update()
     {
         _rb.simulated = GameBehavior.Instance.State == Mousekeeping.GameState.Play;
+        if (!_inCoroutine)
+        {
+            StartCoroutine(BossAttack());
+            _mouseWeapon = Instantiate(_projectilePrefab, transform.position, Quaternion.identity, transform);
+        }
     }
 
     void FixedUpdate()
@@ -59,5 +74,12 @@ public class BossBehavior : MonoBehaviour
             direction.y += 0.5f * Mathf.Sign(direction.y);
             direction.Normalize();
         }
+    }
+    
+    IEnumerator BossAttack()
+    {
+        _inCoroutine = true;
+        yield return new WaitForSeconds(_attackRate);
+        _inCoroutine = false;
     }
 }

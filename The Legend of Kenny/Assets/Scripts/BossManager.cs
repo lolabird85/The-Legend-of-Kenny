@@ -8,8 +8,15 @@ public class BossManager : MonoBehaviour
     public GameObject KingKen;
     public Transform KenParent;
     [SerializeField] private GameObject _gate;
-    
+    private AudioSource _source;
+    [SerializeField] private AudioClip _boom;
+    private bool _audioPlayed;
     public static bool BossHealthDown = false;
+
+    void Start()
+    {
+        _source = GetComponent<AudioSource>();
+    }
     
     void Update()
     {
@@ -21,6 +28,11 @@ public class BossManager : MonoBehaviour
         if (KenBehavior.Crowned)
         {
             Instantiate(KingKen, Vector3.zero, Quaternion.identity, KenParent);
+            if (!_audioPlayed)
+            {
+                _source.PlayOneShot(_boom);
+                _audioPlayed = true;
+            }
             KenBehavior.Crowned = false;
             Destroy(_gate);
         }
