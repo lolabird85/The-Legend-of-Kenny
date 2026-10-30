@@ -181,12 +181,16 @@ public class GameBehavior : MonoBehaviour
     public IEnumerator PowerUp()
     {
         Debug.Log("Coroutine start!");
+        Debug.Log(_ken.CanBlock);
         if (_ken.CanBlock)
         {
+            Debug.Log("Breaking coroutine");
             yield break;
         }
         _ken.CanBlock = true;
+        Debug.Log(_powerUpDuration);
         yield return new WaitForSeconds(_powerUpDuration);
+        Debug.Log(_ken.CanBlock);
         Debug.Log("Seconds done");
         _ken.CanBlock = false;
     }

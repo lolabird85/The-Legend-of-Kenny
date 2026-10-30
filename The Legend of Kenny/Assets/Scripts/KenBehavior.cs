@@ -111,18 +111,17 @@ public class KenBehavior : MonoBehaviour
         if (CanBlock && Input.GetKeyDown(_blockButton))
         {
            _shield = Instantiate(_shieldPrefab, transform.position, transform.rotation, transform);
-            Debug.Log("Can Block");
         }
         if (Input.GetKeyUp(_blockButton))
         {
             Destroy(_shield);
-            Debug.Log("Not blocking");
+            // Debug.Log("Not blocking");
         }
 
         if (!CanBlock)
         {
             Destroy(_shield);
-            Debug.Log("CANNOT BLOCK");
+            // Debug.Log("CANNOT BLOCK");
         }
     }
 
